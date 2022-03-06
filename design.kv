@@ -1,0 +1,125 @@
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        padding: 15, 15
+        spacing: 20, 20
+        GridLayout:
+            cols:1
+            spacing:15, 15
+            Label:
+                text: "User Login"
+                font_size: '20sp'
+            TextInput:
+                hint_text: "username"
+                id:user
+                
+            TextInput:
+                hint_text: "password"
+                password: True
+                id:psw
+            RelativeLayout:
+                Button:
+                    text: "Login"
+                    on_press:root.login(root.ids.user.text,root.ids.psw.text)
+                    size_hint: 0.3, 0.5 
+                    pos_hint: {'x':0.35 , }
+            Label:
+                text:""
+                id:error
+        GridLayout:
+            
+            cols:2
+            size_hint:0.2, 0.1
+            Button:
+                text: "Forgot Password ?"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 0.1 , 1 , 0.1 
+                font_size: '20sp'
+            Button:
+                text: "Sign in"
+                background_color: 1, 1, 1, 0
+                opacity: 1 if self.state == 'normal' else 0.5
+                color: 1 , 0.1 , 0.1 
+                font_size: '20sp'
+                on_press: root.Sign_up()
+
+<signUpScreen>:
+    GridLayout:
+        cols:1
+        padding: 20, 20
+        spacing: 20, 20
+        Label:
+            text:"Welcome to our Sign Up Screen"
+            font_size: '25sp'
+            color: 0.2 , .8 , 1.0 
+        TextInput:
+            hint_text: "Enter your User name"
+            id:user
+            size_hint:0.2, 0.3
+        TextInput:
+            hint_text:"Enter Your Password"
+            id:psw
+            password: True
+            size_hint:0.2, 0.3
+        RelativeLayout:
+            Button:
+                text: "Create"
+                on_press:root.Add_user(root.ids.user.text,root.ids.psw.text)
+                size_hint: 0.3, 0.3 
+                pos_hint: {'x':0.35 , }
+                font_size: '20sp'
+<SignUpScreenSuccess>:
+    GridLayout:
+        cols:1
+        padding: 15, 15
+        spacing: 20, 20
+        RelativeLayout:
+            Label:
+                
+                text:"Your registration is successfull"
+                pos_hint: {'x':0.35 , 'y': 0.35}
+                font_size: '20sp'
+                text_size : self.width , self.height
+                color: 0.1 , 1 , 0.1 
+        RelativeLayout:
+            Button:
+                text:"Login"
+                size_hint: 0.3, 0.2 
+                pos_hint: {'x':0.35 , }
+                font_size: '20sp'
+                on_press: root.gotologin()
+
+<LoginScreenSuccess>:
+    GridLayout
+        cols:1
+        padding: 30, 30
+        spacing: 30, 30
+        RelativeLayout:
+            ImageButton:
+                on_press:root.logout()
+                source: 'logout_hover.png' if self.hovered else 'logout_nothover.png'
+                size_hint: 0.35, 0.35
+                pos_hint: { 'center_x' :0.95 , 'center_y' : 0.80 }
+        Label:
+            text:"Please Tell ous about your experience"
+        TextInput:
+            hint_text:"Verygood...Good...Average...Poor"
+        Button:
+            text:"Submit Feedback"
+           # on_press:feedback()
+        Label:
+            text:""
+
+
+
+
+<RootWidget>:
+    LoginScreen:
+        name: "login_screen"
+    SignUpScreen:
+        name: "signup_screen"
+    SignUpScreenSuccess:    
+        name:"signup_screen_success"
+    LoginScreenSuccess:
+        name:"loginscreensuccess"
